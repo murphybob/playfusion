@@ -19,7 +19,7 @@ Production build:
 npm run build
 ```
 
-This will produce build
+This will produce build (TODO: what will this produce?)
 
 ## Testing
 
