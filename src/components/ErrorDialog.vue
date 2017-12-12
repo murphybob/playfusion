@@ -37,6 +37,7 @@
       right: 1em;
       top: 1em;
       font-weight: bold;
+      cursor: pointer;
     }
   }
 </style>

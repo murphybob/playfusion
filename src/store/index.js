@@ -16,7 +16,13 @@ const state = {
     pageSize: 100,
     sortField: "numberOfPlanets",
     sortOrder: "desc",
+    showWithAtLeastPlanets: 0,
     loading: false,
+    results: [],
+    selected: false
+  },
+  search: {
+    term: "",
     results: []
   }
 }

@@ -1,20 +1,26 @@
 <template>
   <div id="app">
     <router-view/>
-    <ErrorDialog v-if="error.unread"></ErrorDialog>
+    <error-dialog v-if="error.unread"></error-dialog>
+    <star-detail-dialog v-if="stars.selected" :star="stars.selected"></star-detail-dialog>
   </div>
 </template>
 
 <script>
   import ErrorDialog from "./components/ErrorDialog.vue"
+  import StarDetailDialog from "./components/StarDetailDialog/index"
   import store from "./store"
   
   export default {
     name: "app",
     store,
-    components: {ErrorDialog},
+    components: {
+      StarDetailDialog,
+      ErrorDialog
+    },
     data () {
       return {
+        stars: store.state.stars,
         error: store.state.error
       }
     }
@@ -29,7 +35,7 @@
     -moz-osx-font-smoothing: grayscale;
     color: white;
   }
-  h1, h2, h3, h4, h5, .heading {
+  h1, h2, h3, h4, h5 {
     font-family: "Orbitron", sans-serif;
     font-weight: 400;
     color: white;
@@ -52,5 +58,8 @@
     font-size: 100%;
     color: inherit;
     padding: 0;
+  }
+  div {
+    user-select: none;
   }
 </style>

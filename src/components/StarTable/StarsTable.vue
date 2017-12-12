@@ -3,12 +3,12 @@
     <thead>
       <tr>
         <stars-table-header displayName="Name" sortField="name"></stars-table-header>
-        <stars-table-header displayName="Distance (km)" sortField="distance"></stars-table-header>
+        <stars-table-header displayName="Distance (ly)" title="Distance in light years" sortField="distance"></stars-table-header>
         <stars-table-header displayName="Exoplanets" sortField="numberOfPlanets"></stars-table-header>
       </tr>
     </thead>
     <tbody>
-      <star-row v-for="star in stars.results" :key="star.id" :star="star"></star-row>
+      <star-row v-for="star in stars.results" :key="star.name" :star="star"></star-row>
       <tr v-if="stars.truncated">
         <td colspan="3"><infinite-loading @infinite="getMoreStars" ref="inf"></infinite-loading></td>
       </tr>
@@ -51,7 +51,7 @@
       this.$store.watch(
         (state) => state.stars.results,
         (results) => {
-          if (results.length === 0) {
+          if (results.length === 0 && this.$refs.inf) {
             this.$refs.inf.$emit("$InfiniteLoading:reset", {})
           }
         }
@@ -69,6 +69,15 @@
     
     .loading {
       text-align: center;
+    }
+    
+    .stars-table-header {
+      &.name {
+        width: 40%;
+      }
+      &.distance {
+        width: 30%;
+      }
     }
   }
 </style>
